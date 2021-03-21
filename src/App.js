@@ -33,7 +33,10 @@ function MovieCounter(){
       <button onClick = {handler} style= {{marginTop:'24px'}}>Movie-Counter</button>
       <button onClick = {handlerDedact}>Movie-Decrase</button>
       <h3>Number Of Movie :{count} </h3>
-
+      <MovieDisplay movie={count}></MovieDisplay>
+      <MovieDisplay movie={count}></MovieDisplay>
+      <MovieDisplay movie={count}></MovieDisplay>
+      <MovieDisplay movie={count}></MovieDisplay>
       
     </div>
 
@@ -41,6 +44,10 @@ function MovieCounter(){
 
 
   )
+}
+function MovieDisplay(props){
+
+  return <h4> I Made This Movie:{props.movie} </h4>
 }
 
 function Nayok(props){
