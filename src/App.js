@@ -1,20 +1,32 @@
 import logo from './logo.svg';
 import './App.css';
-import React , {useState} from 'react'; 
+import React , {useState, useEffect} from 'react'; 
 function App() {
-  const ActorData = ['Tina', 'Jina','Minia','Tamanna-Begum','Deepjol-Caca']
+  const [ActrosData , setActrosData]= useState([])
+
+useEffect(()=>{ 
+  fetch('https://jsonplaceholder.typicode.com/users')
+  .then(res => res.json())
+  .then(data => setActrosData(data));
+
+
+},[])
+  //const ActrosData = [{name :'Tina', age: 44},{name :'Jina', age:78}, {name :'Minia', age:34},{name:'Tamanna-Begum', age:23},{name:'Deepjol-Caca', age:33},{name :'OmorSani', age:22},{name :'Bobita', age:22}];
+  
   return (
     <div className="App">
       <MovieCounter></MovieCounter>
+      {
 
-      <Nayok name="Josim"></Nayok>
-      <Nayok name = {ActorData[4]}></Nayok>
-      <Nayok name ="Rubal"></Nayok>
-      <Nayok name ="Bappa Raj"></Nayok>
-      <Nayok name = {ActorData [3]}></Nayok>
+      ActrosData.map(nk => <Nayok name ={nk.name} key= {nk.id} age ={nk.age}></Nayok>) // Map  Data Get from Object Name and Age: and show in Ui ... 
+
+      }
+
+      
     </div>
   );
 }
+// For Incrase Button 
 function MovieCounter(){
   const [count, setCount] = useState(4); // Use useState:
     const handler = () => {
@@ -22,6 +34,9 @@ function MovieCounter(){
       const AddMovie = count+1;
       setCount(AddMovie);
     }
+
+    // For Decrase Button 
+    
     const handlerDedact = () => {
 
       const DedactMovie = count-1;
@@ -62,6 +77,7 @@ const nayokstyle ={
   return(    
   <div style={nayokstyle } >
   <h1 style={{color:'yellowgreen'}}>I M Actores . / Actress :{props.name} </h1> 
+  <h2> My Age is : {props.age}</h2>
   <h3>Bangladesh FDC</h3>
   </div> 
 
